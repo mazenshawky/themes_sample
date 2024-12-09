@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:themes_sample/screens/components/my_dialog.dart';
-import 'package:themes_sample/screens/components/my_text.dart';
 import 'package:themes_sample/utils/app_theme.dart';
 import 'package:themes_sample/injection_container.dart' as di;
 
@@ -29,7 +28,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             );
             _setTheme(value);
           },
-          title: const MyText(text: 'Theme'),
+          title: const Text('Theme'),
           leading: const Icon(Icons.contrast),
         )
       ],
