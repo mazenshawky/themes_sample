@@ -6,29 +6,28 @@ import 'injection_container.dart' as di;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
-  final AppTheme appTheme = di.sl<AppTheme>();
-  runApp(MyApp(appTheme: appTheme));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key, required this.appTheme});
-
-  final AppTheme appTheme;
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+  final AppTheme appTheme = di.sl<AppTheme>();
+
   @override
   void initState() {
-    widget.appTheme.addListener(_themeListener);
+    appTheme.addListener(_themeListener);
     super.initState();
   }
 
   @override
   void dispose() {
-    widget.appTheme.removeListener(_themeListener);
+    appTheme.removeListener(_themeListener);
     super.dispose();
   }
 
@@ -45,7 +44,7 @@ class _MyAppState extends State<MyApp> {
       home: const MainScreen(),
       theme: AppTheme.getLightTheme(),
       darkTheme: AppTheme.getDarkTheme(),
-      themeMode: widget.appTheme.getThemeMode(),
+      themeMode: appTheme.getThemeMode(),
     );
   }
 }
